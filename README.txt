@@ -16,7 +16,7 @@ obj.color.value                    # => :red
 obj.color.red?                     # => true
 obj.color.green?                   # => false
 
-# Querying (not yet working)
+# Querying
 TestObject.where(:color => :red)
 
 == Getting the Latest Version
@@ -27,4 +27,5 @@ The repository for has_enumeration is hosted at GitHub:
 == Supported Versions
 has_enumeration has been tested with:
   - ActiveRecord 3.0.0rc
+  - Ruby 1.8.7-p299
   - Ruby 1.9.2-head (revision 28788)

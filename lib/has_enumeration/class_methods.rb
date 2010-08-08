@@ -5,6 +5,7 @@ module HasEnumeration
       # All we have to do is cons up a class that implements the bidirectional
       # mapping described by the provided hash.
       klass = create_enumeration_mapping_class(mapping)
+      attr_enumeration_mapping_classes[attribute] = klass
 
       # Bind the class to a name within the scope of this class
       attribute_name = attribute.to_s
@@ -17,9 +18,19 @@ module HasEnumeration
         :mapping => [attribute_name, 'raw_value'],
         :converter => :from_sym
       )
+
+      # Install our aggregate condition handling override, but only once
+      unless @aggregate_conditions_override_installed
+        extend HasEnumeration::AggregateConditionsOverride
+        @aggregate_conditions_override_installed = true
+      end
     end
 
   private
+    def attr_enumeration_mapping_classes
+      @attr_enumeration_mapping_classes ||= {}
+    end
+
     def create_enumeration_mapping_class(mapping)
       inverted_mapping = mapping.invert
       Class.new do

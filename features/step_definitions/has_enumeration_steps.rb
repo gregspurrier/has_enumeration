@@ -46,5 +46,5 @@ Then /^I should get all of the objects having that value$/ do
 end
 
 Then /^I should not get any objects having other values$/ do
-  @results.reject {|x| x.color.value != @desired_color}.should be_empty
+  @results.reject {|x| x.color.value == @desired_color}.should be_empty
 end
