@@ -16,7 +16,7 @@ obj.color.value                    # => :red
 obj.color.red?                     # => true
 obj.color.green?                   # => false
 
-# Querying
+# Querying (not yet working)
 TestObject.where(:color => :red)
 
 == Getting the Latest Version
