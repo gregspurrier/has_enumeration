@@ -7,7 +7,8 @@ Feature:
   So that I can write pretty, concise code.
 
   Scenario Outline: set an enumerated value on an unsaved object
-    Given an unsaved object having a mapped-integer enumeration of red, green, and blue
+    Given a model with an explicitly-mapped enumeration of red, green, and blue
+    And an unsaved instance of that model
     When I assign a symbolic value <assigned> to the enumeration
     Then it should have the assigned value as its value
     And the red? predicate should be <red?>
@@ -21,7 +22,8 @@ Feature:
       | :blue    | false | false  | true  |
 
   Scenario Outline: set an enumerated value then save and reload
-    Given an unsaved object having a mapped-integer enumeration of red, green, and blue
+    Given a model with an explicitly-mapped enumeration of red, green, and blue
+    And an unsaved instance of that model
     When I assign a symbolic value <assigned> to the enumeration
     And I save and reload the object
     Then it should have the assigned value as its value
@@ -36,7 +38,8 @@ Feature:
       | :blue    | false | false  | true  |
 
   Scenario Outline: find objects with a specific enumerated value
-    Given a set of objects with a variety of values for the enumeration
+    Given a model with an explicitly-mapped enumeration of red, green, and blue
+    And a set of objects with a variety of values for the enumeration
     When I query for objects with the value <value>
     Then I should get all of the objects having that value
     And I should not get any objects having other values

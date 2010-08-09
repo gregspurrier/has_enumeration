@@ -1,6 +1,13 @@
 module HasEnumeration
   module ClassMethods
     def has_enumeration(attribute, mapping)
+      unless mapping.is_a?(Hash)
+        # Recast the mapping as a symbol -> string hash
+        mapping_hash = {}
+        mapping.each {|m| mapping_hash[m] = m.to_s}
+        mapping = mapping_hash
+      end
+
       # ActiveRecord's composed_of method will do most of the work for us.
       # All we have to do is cons up a class that implements the bidirectional
       # mapping described by the provided hash.

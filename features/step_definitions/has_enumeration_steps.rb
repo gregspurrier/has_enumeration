@@ -1,5 +1,13 @@
-Given /^an unsaved object having a mapped\-integer enumeration of red, green, and blue$/ do
-  @object = MappedIntegerModel.new
+Given /^a model with an explicitly-mapped enumeration of red, green, and blue$/ do
+  @model_class = ExplicitlyMappedModel
+end
+
+Given /^a model with an implicitly-mapped enumeration of red, green, and blue$/ do
+  @model_class = ImplicitlyMappedModel
+end
+
+Given /^an unsaved instance of that model$/ do
+  @object = @model_class.new
 end
 
 When /^I assign a symbolic value :([a-z_]+) to the enumeration$/ do |value|
@@ -9,7 +17,7 @@ end
 
 When /^I save and reload the object$/ do
   @object.save!
-  @object = @object.class.find(@object.id)
+  @object = @model_class.find(@object.id)
 end
 
 Then /^it should have the assigned value as its value$/ do
@@ -27,18 +35,18 @@ end
 
 
 Given /^a set of objects with a variety of values for the enumeration$/ do
-  MappedIntegerModel.delete_all
+  @model_class.delete_all
   2.times do
     [:red, :green, :blue].each do |color|
-      MappedIntegerModel.create!(:color => color)
+      @model_class.create!(:color => color)
     end
   end
-  @all_objects = MappedIntegerModel.all(:order => :id)
+  @all_objects = @model_class.all(:order => :id)
 end
 
 When /^I query for objects with the value :([a-z_]+)$/ do |value|
   @desired_color = value.to_sym
-  @results = MappedIntegerModel.where(:color => @desired_color).order(:id)
+  @results = @model_class.where(:color => @desired_color).order(:id)
 end
 
 Then /^I should get all of the objects having that value$/ do

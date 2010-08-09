@@ -7,7 +7,11 @@ ActiveRecord::Base.establish_connection(
 )
 
 class CreateTables < ActiveRecord::Migration
-  create_table :mapped_integer_models, :force => true do |t|
+  create_table :explicitly_mapped_models, :force => true do |t|
     t.integer :color
+  end
+
+  create_table :implicitly_mapped_models, :force => true do |t|
+    t.string :color
   end
 end

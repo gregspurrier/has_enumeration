@@ -6,6 +6,10 @@ of symbols.
 class TestObject < ActiveRecord::Base
   # Integer attribute with explicit value mapping
   has_enumeration :color, :red => 1, :green => 2, :blue => 3
+
+
+  # String attribute with implicit value mapping
+  # has_enumeration :color, [:red, :green, :blue]
 end
 
 # Value and predicates
