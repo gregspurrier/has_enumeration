@@ -23,6 +23,10 @@ obj.color.green?                   # => false
 # Querying
 TestObject.where(:color => :red)
 
+# Querying with arel predicates
+attr = TestObject.arel_table[:color]
+TestObject.where(attr.not_in([:red, :green]))
+
 == Getting the Latest Version
 The repository for has_enumeration is hosted at GitHub:
   Web page:   http://github.com/gregspurrier/has_enumeration

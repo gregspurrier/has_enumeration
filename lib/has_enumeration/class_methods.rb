@@ -31,6 +31,12 @@ module HasEnumeration
         extend HasEnumeration::AggregateConditionsOverride
         @aggregate_conditions_override_installed = true
       end
+
+      if respond_to?(:arel_table)
+        # Patch the enumeration's underlying arel attribute to make it
+        # aware of the mapping.
+        install_arel_attribute_mapping(attribute, mapping)
+      end
     end
 
   private
@@ -59,6 +65,42 @@ module HasEnumeration
         (class <<self;self;end).class_eval do
           define_method :from_sym do |sym|
             new(mapping[sym])
+          end
+        end
+      end
+    end
+
+    def install_arel_attribute_mapping(attribute, mapping)
+      # For this attribute only, override all of the methods defined
+      # in Arel::Attribute::Predications so that they will perform the
+      # symbol-to-underlying-value mapping before proceeding with their work.
+      arel_attr = arel_table[attribute]
+      (class <<arel_attr;self;end).class_eval do
+        define_method :map_enumeration_arg do |arg|
+          if arg.is_a?(Symbol)
+            mapping[arg]
+          elsif arg.is_a?(Array)
+            arg.map {|a| map_enumeration_arg(a)}
+          else
+            arg
+          end
+        end
+
+        Arel::Attribute::Predications.instance_methods.each do |method_name|
+          # Preserve the arity of the method we are overriding
+          arity = Arel::Attribute::Predications.
+            instance_method(method_name).arity
+          case arity
+          when 1
+            define_method method_name do |arg|
+              super(map_enumeration_arg(arg))
+            end
+          when -1
+            define_method method_name do |*args|
+              super(map_enumeration_arg(args))
+            end
+          else
+            raise "Unexpected arity #{arity} for #{method_name}"
           end
         end
       end
