@@ -34,6 +34,7 @@ The repository for has_enumeration is hosted at GitHub:
 
 == Supported Versions
 has_enumeration has been tested with:
-  - ActiveRecord 3.0.0rc
+  - ActiveRecord 3.0.0.rc
   - Ruby 1.8.7-p299
   - Ruby 1.9.2-head (revision 28788)
+  - JRuby 1.5.1

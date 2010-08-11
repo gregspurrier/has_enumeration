@@ -2,7 +2,7 @@ $LOAD_PATH << File.expand_path('../../../lib', __FILE__)
 require 'has_enumeration'
 
 ActiveRecord::Base.establish_connection(
-  :adapter => 'sqlite3',
+  :adapter => defined?(JRUBY_VERSION) ? 'jdbcsqlite3': 'sqlite3',
   :database => File.expand_path('../database', __FILE__)
 )
 
