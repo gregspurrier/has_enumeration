@@ -46,7 +46,7 @@ end
 
 When /^I query for objects with the value :([a-z_]+)$/ do |value|
   @desired_color = value.to_sym
-  @results = @model_class.where(:color => @desired_color).order(:id)
+  @results = @model_class.all(:conditions => {:color => @desired_color}, :order => :id)
 end
 
 When /^I query for objects with the value :([a-z_]+) via arel$/ do |value|

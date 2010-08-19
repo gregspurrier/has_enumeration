@@ -1,4 +1,9 @@
 $LOAD_PATH << File.expand_path('../../../lib', __FILE__)
+
+ENV['AR_VERSION'] ||= '3_0'
+
+require 'rubygems'
+require 'bundler/setup'
 require 'has_enumeration'
 
 ActiveRecord::Base.establish_connection(
