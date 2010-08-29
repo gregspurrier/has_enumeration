@@ -1,3 +1,6 @@
+Version 0.3.1:
+- Re-release of 0.3.0 to pick up missed files
+
 Version 0.3.0:
 - Support for Rails 3.0.0.rc2
 - NOTE: no longer compatible with Rails 3.0.0.rc
