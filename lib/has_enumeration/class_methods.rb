@@ -86,10 +86,9 @@ module HasEnumeration
           end
         end
 
-        Arel::Attribute::Predications.instance_methods.each do |method_name|
+        Arel::Attribute::PREDICATES.each do |method_name|
           # Preserve the arity of the method we are overriding
-          arity = Arel::Attribute::Predications.
-            instance_method(method_name).arity
+          arity = Arel::Attribute.instance_method(method_name).arity
           case arity
           when 1
             define_method method_name do |arg|

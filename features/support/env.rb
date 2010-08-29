@@ -1,6 +1,6 @@
 $LOAD_PATH << File.expand_path('../../../lib', __FILE__)
 
-ENV['AR_VERSION'] ||= '3_0'
+ENV['AR_VERSION'] ||= '3.0'
 
 require 'rubygems'
 require 'bundler/setup'

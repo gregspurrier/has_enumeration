@@ -44,4 +44,4 @@ has_enumeration has been tested with all combinations for the following:
     - JRuby 1.5.1
   ActiveRecord:
     - 2.3.8
-    - 3.0.0.rc
+    - 3.0.0.rc2
