@@ -44,7 +44,7 @@ has_enumeration has been tested with all combinations for the following:
   Rubies:
     - 1.8.7-p302
     - 1.9.2-p0
-    - JRuby 1.5.1
+    - JRuby 1.5.2
   ActiveRecord:
     - 2.3.8
     - 3.0.0
