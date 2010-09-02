@@ -4,6 +4,7 @@ if  ENV['AR_VERSION'] == '2.3'
   gem 'activerecord', '~> 2.3.8'
 else
   gem 'activerecord', '= 3.0.0'
+  gem 'meta_where'
 end
 
 gem 'rspec', '~> 2.0.0.beta.19'

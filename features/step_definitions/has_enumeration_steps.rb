@@ -55,6 +55,11 @@ When /^I query for objects with the value :([a-z_]+) via arel$/ do |value|
   @results = @model_class.where(arel_attr.eq(@desired_color)).order(:id)
 end
 
+When /^I query for objects with the value :([a-z_]+) via MetaWhere$/ do |value|
+  @desired_color = value.to_sym
+  @results = @model_class.where(:color.eq => @desired_color).order(:id)
+end
+
 Then /^I should get all of the objects having that value$/ do
   @results.should == @all_objects.select {|x| x.color.value == @desired_color}
 end

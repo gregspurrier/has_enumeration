@@ -27,6 +27,9 @@ TestObject.where(:color => :red)
 attr = TestObject.arel_table[:color]
 TestObject.where(attr.not_in([:red, :green]))
 
+# Querying with MetaWhere (ActiveRecord 3 only, with MetaWhere gem)
+TestObject.where(:color.not_in => [:red, :green])
+
 == Installation
 gem install has_enumeration
 
@@ -44,4 +47,4 @@ has_enumeration has been tested with all combinations for the following:
     - JRuby 1.5.1
   ActiveRecord:
     - 2.3.8
-    - 3.0.0.rc2
+    - 3.0.0

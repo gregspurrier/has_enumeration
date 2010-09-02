@@ -15,7 +15,7 @@ in the database.  Predicates are provided for each symbol in the enumeration
 and the symbols may be used in finder methods.  When using ActiveRecord 3,
 the symbols may also be used when interacting with the underlying Arel attribute
 for the enumeration.  has_enumeration has been tested with Ruby 1.8.7,
-Ruby 1.9.2, JRuby 1.5.1, ActiveRecord 2.3.8, and ActiveRecord 3.0.0.rc2.
+Ruby 1.9.2, JRuby 1.5.1, ActiveRecord 2.3.8, and ActiveRecord 3.0.0.
 EOF
     gemspec.email = "greg@rujubu.com"
     gemspec.homepage = "http://github.com/gregspurrier/has_enumeration"
@@ -37,7 +37,7 @@ namespace :features do
   end
 
   Cucumber::Rake::Task.new(:rails3) do |t|
-    features = %w(arel_attributes)
+    features = %w(arel_attributes meta_where_queries)
     feature_files = features.map {|f| "features/#{f}.feature"}.join(' ')
     t.cucumber_opts = feature_files
   end
