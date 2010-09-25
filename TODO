@@ -1,6 +1,5 @@
 Prior to 1.0.0:
 - Raise exception when assigning an invalid value (?)
 - Configurable support for nil
-- Ability to decouple enumeration name from underlying column name
 - rdoc documentation for has_enumeration
 - Rake task to automate testing the supported Rubies and ActiveRecord versions

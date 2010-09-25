@@ -6,6 +6,10 @@ Given /^a model with an implicitly-mapped enumeration of red, green, and blue$/ 
   @model_class = ImplicitlyMappedModel
 end
 
+Given /^a model with an nonstandard-attribute enumeration of red, green, and blue$/ do
+  @model_class = NonstandardAttributeModel
+end
+
 Given /^an unsaved instance of that model$/ do
   @object = @model_class.new
 end

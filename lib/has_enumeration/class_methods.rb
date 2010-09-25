@@ -1,6 +1,6 @@
 module HasEnumeration
   module ClassMethods
-    def has_enumeration(attribute, mapping)
+    def has_enumeration(enumeration, mapping, options = {})
       unless mapping.is_a?(Hash)
         # Recast the mapping as a symbol -> string hash
         mapping_hash = {}
@@ -8,21 +8,23 @@ module HasEnumeration
         mapping = mapping_hash
       end
 
+      # The underlying attribute
+      attribute = options[:attribute] || enumeration
+
       # ActiveRecord's composed_of method will do most of the work for us.
       # All we have to do is cons up a class that implements the bidirectional
       # mapping described by the provided hash.
       klass = create_enumeration_mapping_class(mapping)
-      attr_enumeration_mapping_classes[attribute] = klass
+      attr_enumeration_mapping_classes[enumeration] = klass
 
       # Bind the class to a name within the scope of this class
-      attribute_name = attribute.to_s
-      mapping_class_name = attribute_name.camelize
+      mapping_class_name = enumeration.to_s.camelize
       const_set(mapping_class_name, klass)
       scoped_class_name = [self.name, mapping_class_name].join('::')
 
-      composed_of(attribute,
+      composed_of(enumeration,
         :class_name => scoped_class_name,
-        :mapping => [attribute_name, 'raw_value'],
+        :mapping => [attribute.to_s, 'raw_value'],
         :converter => :from_sym
       )
 

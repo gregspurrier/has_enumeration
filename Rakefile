@@ -31,7 +31,8 @@ namespace :features do
   task :all => [:common, :rails3]
 
   Cucumber::Rake::Task.new(:common) do |t|
-    features = %w(explicitly_mapped_enumeration implicitly_mapped_enumeration)
+    features = %w(explicitly_mapped_enumeration implicitly_mapped_enumeration
+        nonstandard_attribute_enumeration)
     feature_files = features.map {|f| "features/#{f}.feature"}.join(' ')
     t.cucumber_opts = feature_files
   end

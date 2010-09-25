@@ -23,4 +23,8 @@ class CreateTables < ActiveRecord::Migration
   create_table :implicitly_mapped_models, :force => true do |t|
     t.string :color
   end
+
+  create_table :nonstandard_attribute_models, :force => true do |t|
+    t.integer :hue
+  end
 end
