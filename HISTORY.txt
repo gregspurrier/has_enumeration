@@ -1,4 +1,4 @@
-Upcoming:
+Version 0.5.0:
 - Default name of underlying attribute can be overridden with the :attribute
   option
 - Internal cleanup: removed some unnecessary code and patching for Rails 3

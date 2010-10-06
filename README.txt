@@ -7,9 +7,12 @@ class TestObject < ActiveRecord::Base
   # Integer attribute with explicit value mapping
   has_enumeration :color, :red => 1, :green => 2, :blue => 3
 
-
   # String attribute with implicit value mapping
   # has_enumeration :color, [:red, :green, :blue]
+
+  # Attribute with a name other than the enumeration's name
+  # has_enumeration :color, {:red => 1, :green => 2, :blue => 3},
+  #   :attribute => :hue
 end
 
 # Value and predicates
@@ -44,7 +47,7 @@ has_enumeration has been tested with all combinations for the following:
   Rubies:
     - 1.8.7-p302
     - 1.9.2-p0
-    - JRuby 1.5.2
+    - JRuby 1.5.3
   ActiveRecord:
-    - 2.3.8
+    - 2.3.9
     - 3.0.0
