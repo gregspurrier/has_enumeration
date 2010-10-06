@@ -1,6 +1,7 @@
 Upcoming:
 - Default name of underlying attribute can be overridden with the :attribute
   option
+- Internal cleanup: removed some unnecessary code and patching for Rails 3
 
 Version 0.4.0:
 - MetaWhere interoperability

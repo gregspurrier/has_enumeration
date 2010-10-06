@@ -28,16 +28,16 @@ module HasEnumeration
         :converter => :from_sym
       )
 
-      # Install our aggregate condition handling override, but only once
-      unless @aggregate_conditions_override_installed
-        extend HasEnumeration::AggregateConditionsOverride
-        @aggregate_conditions_override_installed = true
-      end
-
-      if respond_to?(:arel_table)
+      if ActiveRecord::VERSION::MAJOR >= 3
         # Install this attributes mapping for use later when extending
         # Arel attributes on the fly.
         ::Arel::Table.has_enumeration_mappings[table_name][attribute] = mapping
+      else
+        # Install our aggregate condition handling override, but only once
+        unless @aggregate_conditions_override_installed
+          extend HasEnumeration::AggregateConditionsOverride
+          @aggregate_conditions_override_installed = true
+        end
       end
     end
 
