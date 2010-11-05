@@ -3,12 +3,12 @@ source 'http://rubygems.org'
 if  ENV['AR_VERSION'] == '2.3'
   gem 'activerecord', '~> 2.3.8'
 else
-  gem 'activerecord', '= 3.0.0'
+  gem 'activerecord', '~> 3.0.1'
   gem 'meta_where'
 end
 
-gem 'rspec', '~> 2.0.0.beta.19'
-gem 'cucumber', '~> 0.8.5'
+gem 'rspec', '~> 2.0.1'
+gem 'cucumber', '~> 0.9.3'
 
 platforms :ruby do
   gem 'sqlite3-ruby', :require => 'sqlite3'
