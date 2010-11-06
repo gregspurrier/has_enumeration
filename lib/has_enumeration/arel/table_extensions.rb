@@ -32,6 +32,11 @@ module HasEnumeration
         (class <<arel_attr;self;end).class_eval do
           define_method :map_enumeration_arg do |arg|
             if arg.is_a?(Symbol)
+              unless mapping.has_key?(arg)
+                raise ArgumentError.new(
+                  "#{arg.inspect} is not one of {#{mapping.keys.map(&:inspect).sort.join(', ')}}"
+                )
+              end
               mapping[arg]
             elsif arg.is_a?(Array)
               arg.map {|a| map_enumeration_arg(a)}

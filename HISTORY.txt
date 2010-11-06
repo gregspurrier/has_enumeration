@@ -1,3 +1,7 @@
+HEAD:
+- Raises ArgumentError when assigning, or querying, with a symbol that is
+  not part of the enumeration
+
 Version 0.5.0:
 - Default name of underlying attribute can be overridden with the :attribute
   option

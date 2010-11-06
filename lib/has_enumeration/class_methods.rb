@@ -66,6 +66,11 @@ module HasEnumeration
 
         (class <<self;self;end).class_eval do
           define_method :from_sym do |sym|
+            unless mapping.has_key?(sym)
+              raise ArgumentError.new(
+                "#{sym.inspect} is not one of {#{mapping.keys.map(&:inspect).sort.join(', ')}}"
+              )
+            end
             new(mapping[sym])
           end
         end
