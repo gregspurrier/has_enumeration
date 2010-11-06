@@ -48,6 +48,7 @@ has_enumeration has been tested with all combinations for the following:
     - 1.8.7-p302
     - 1.9.2-p0
     - JRuby 1.5.3
+    - Rubinius 1.1.0
   ActiveRecord:
-    - 2.3.9
-    - 3.0.0
+    - 2.3.10
+    - 3.0.1
