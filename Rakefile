@@ -1,6 +1,9 @@
 require 'rubygems'
 require 'cucumber'
 require 'cucumber/rake/task'
+require 'rspec'
+require 'rspec/core/rake_task'
+
 
 begin
   require 'jeweler'
@@ -43,3 +46,6 @@ namespace :features do
     t.cucumber_opts = feature_files
   end
 end
+
+desc "Run all specs"
+RSpec::Core::RakeTask.new('spec')
