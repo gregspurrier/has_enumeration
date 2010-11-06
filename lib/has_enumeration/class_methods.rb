@@ -50,11 +50,20 @@ module HasEnumeration
     def create_enumeration_mapping_class(mapping)
       inverted_mapping = mapping.invert
       Class.new do
-        attr_reader :raw_value, :value
+        attr_reader :raw_value
 
         define_method :initialize do |raw_value|
           @raw_value = raw_value
           @value = inverted_mapping[raw_value]
+        end
+
+        define_method :to_sym do
+          @value
+        end
+
+        define_method :value do
+          puts "#{self.class.name}#value is deprecated. Use #to_sym instead. (#{caller[0]})"
+          to_sym
         end
 
         mapping.keys.each do |sym|

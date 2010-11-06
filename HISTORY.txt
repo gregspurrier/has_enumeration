@@ -1,4 +1,5 @@
 HEAD:
+- Added #to_sym for generated enumeration class.  #value is deprecated.
 - Raises ArgumentError when assigning, or querying, with a symbol that is
   not part of the enumeration
 - A value of nil in underlying attribute results in a nil value for the
