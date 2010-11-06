@@ -1,6 +1,10 @@
 HEAD:
 - Raises ArgumentError when assigning, or querying, with a symbol that is
   not part of the enumeration
+- A value of nil in underlying attribute results in a nil value for the
+  enumeration
+- Assigning nil to the enumeration results in a value of nil for the underlying
+  attribute
 
 Version 0.5.0:
 - Default name of underlying attribute can be overridden with the :attribute

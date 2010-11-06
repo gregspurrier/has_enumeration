@@ -35,3 +35,33 @@ describe HasEnumeration, 'with invalid values' do
     end
   end
 end
+
+describe HasEnumeration, 'with an uninitialied value' do
+  context 'in a newly-created object' do
+    it 'returns nil for the value of the enumeration' do
+      ExplicitlyMappedModel.new.color.should be_nil
+    end
+  end
+
+  context 'in an existing object' do
+    it 'returns nil for the value of the enumeration' do
+      object = ExplicitlyMappedModel.find(ExplicitlyMappedModel.create!.id)
+      object.color.should be_nil
+    end
+  end
+end
+
+describe HasEnumeration, 'assignment of nil' do
+  it 'sets the enumeration to nil' do
+    object = ExplicitlyMappedModel.new(:color => :red)
+    object.color = nil
+    object.color.should be_nil
+  end
+
+  it 'persists across a trip to the database' do
+    object = ExplicitlyMappedModel.create!(:color => :red)
+    object.color = nil
+    object.save!
+    ExplicitlyMappedModel.find(object.id).color.should be_nil
+  end
+end

@@ -25,7 +25,8 @@ module HasEnumeration
       composed_of(enumeration,
         :class_name => scoped_class_name,
         :mapping => [attribute.to_s, 'raw_value'],
-        :converter => :from_sym
+        :converter => :from_sym,
+        :allow_nil => true
       )
 
       if ActiveRecord::VERSION::MAJOR >= 3
