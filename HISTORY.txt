@@ -1,4 +1,4 @@
-HEAD:
+Version 1.0.0:
 - Added #to_sym for generated enumeration class.  #value is deprecated.
 - Raises ArgumentError when assigning, or querying, with a symbol that is
   not part of the enumeration
