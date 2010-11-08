@@ -43,15 +43,15 @@ Enumerated attributes are assigned using symbols:
 
 The symbols are coerced into an instance of a nested class (`Car::Color` in
 this example) that is created by `has_enumeration`. If for some reason you
-want to avoid the type coercion, you can assign a value of that class directly:
+need to avoid the type coercion, you can assign a value of that class directly:
 
-    car.color = Car::Color.new(:green)
+    car.color = Car::Color.from_sym(:green)
 
 ### Querying
 When constructing queries referencing the enumerated attribute, use the symbol
 as its value:
 
-    Car.find(all, :conditions => {:color => :red})
+    Car.find(:all, :conditions => {:color => :red})
 
 `has_enumeration` supports Rails 3 and is aware of the model's underlying Arel
 representation:
