@@ -1,5 +1,26 @@
 module HasEnumeration
   module ClassMethods
+    # Declares an enumerated attribute called +enumeration+ consisting of
+    # the symbols defined in +mapping+.
+    #
+    # When the database representation of the attribute is a string, +mapping+
+    # can be an array of symbols. The string representation of the symbol
+    # will be stored in the databased.  E.g.:
+    #
+    #   has_enumeration :color, [:red, :green, :blue]
+    #
+    # When the database representation of the attribute is not a string, or
+    # if its values do not match up with the string versions of its symbols,
+    # an hash mapping symbols to their underlying values may be used:
+    #
+    #   has_enumeration :color, :red => 1, :green => 2, :blue => 3
+    #
+    # By default, has_enumeration assumes that the column in the database
+    # has the same name as the enumeration.  If this is not the case, the
+    # column can be specified with the :attribute option:
+    #
+    #   has_enumeration :color, [:red, :green, :blue], :attribute => :hue
+    #
     def has_enumeration(enumeration, mapping, options = {})
       unless mapping.is_a?(Hash)
         # Recast the mapping as a symbol -> string hash
