@@ -103,12 +103,13 @@ environment.rb file:
 
 * 2.3.10
 * 3.0.1
+* 3.0.3
 
 and the following Ruby implementations:
 
 * 1.8.7-p302
 * 1.9.2-p0
-* JRuby 1.5.3
+* JRuby 1.5.5
 * Rubinius 1.1.0
 
 

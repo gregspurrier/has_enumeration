@@ -18,8 +18,8 @@ in the database.  Predicates are provided for each symbol in the enumeration
 and the symbols may be used in finder methods.  When using ActiveRecord 3,
 the symbols may also be used when interacting with the underlying Arel attribute
 for the enumeration.  has_enumeration has been tested with Ruby 1.8.7,
-Ruby 1.9.2, JRuby 1.5.3, Rubinius 1.1.0, ActiveRecord 2.3.10, and ActiveRecord
-3.0.1.
+Ruby 1.9.2, JRuby 1.5.5, Rubinius 1.1.0, ActiveRecord 2.3.10, and ActiveRecord
+3.0.3.
 EOF
     gemspec.email = "greg@rujubu.com"
     gemspec.homepage = "http://github.com/gregspurrier/has_enumeration"
