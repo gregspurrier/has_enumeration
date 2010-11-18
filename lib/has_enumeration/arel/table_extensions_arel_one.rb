@@ -1,9 +1,11 @@
+# Support for Arel 1.  Will eventually be removed once most people are on
+# Arel 2.
 module HasEnumeration
   module Arel
-    module TableExtensions
+    module TableExtensionsArelOne
       def self.included(base)
         base.class_eval do
-          alias_method_chain :columns, :has_enumeration
+          alias_method_chain :attributes, :has_enumeration
 
           def self.has_enumeration_mappings
             @has_enumeration_mappings ||= Hash.new {|h,k| h[k] = Hash.new}
@@ -11,17 +13,17 @@ module HasEnumeration
         end
       end
 
-      def columns_with_has_enumeration
-        return @columns if @columns
-        columns = columns_without_has_enumeration
+      def attributes_with_has_enumeration
+        return @attributes if @attributes
+        attrs = attributes_without_has_enumeration
         mappings = self.class.has_enumeration_mappings[name]
         if mappings
           mappings.each do |attr_name, mapping|
-            attr = columns.detect {|c| c.name.to_s == attr_name.to_s}
+            attr = attrs[attr_name]
             install_has_enumeration_attribute_mapping(attr, mapping)
           end
         end
-        columns
+        attrs
       end
 
     private
@@ -45,16 +47,18 @@ module HasEnumeration
             end
           end
 
-          predicates = ::Arel::Predications.instance_methods.map &:to_sym
-          predicates.each do |method_name|
+          ::Arel::Attribute::PREDICATES.each do |method_name|
+            # Preserve the arity of the method we are overriding
             arity = ::Arel::Attribute.instance_method(method_name).arity
             case arity
             when 1
               define_method method_name do |arg|
                 super(map_enumeration_arg(arg))
               end
-            when 0
-              # No-op
+            when -1
+              define_method method_name do |*args|
+                super(map_enumeration_arg(args))
+              end
             else
               raise "Unexpected arity #{arity} for #{method_name}"
             end

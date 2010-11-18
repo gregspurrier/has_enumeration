@@ -3,11 +3,11 @@ source 'http://rubygems.org'
 if  ENV['AR_VERSION'] == '2.3'
   gem 'activerecord', '~> 2.3.8'
 else
-  gem 'activerecord', '~> 3.0.1'
+  gem 'activerecord', '~> 3.0.3'
   gem 'meta_where'
 end
 
-gem 'rspec', '~> 2.0.1'
+gem 'rspec', '~> 2.1.0'
 gem 'cucumber', '~> 0.9.3'
 
 platforms :ruby do

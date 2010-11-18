@@ -55,7 +55,7 @@ end
 
 When /^I query for objects with the value :([a-z_]+) via arel$/ do |value|
   @desired_color = value.to_sym
-  arel_attr = @model_class.arel_table.attributes[:color]
+  arel_attr = @model_class.arel_table[:color]
   @results = @model_class.where(arel_attr.eq(@desired_color)).order(:id)
 end
 
