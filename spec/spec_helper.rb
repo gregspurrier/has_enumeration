@@ -1,7 +1,7 @@
-ENV['AR_VERSION'] ||= '3.0'
-
 require 'rubygems'
-require 'bundler/setup'
+require 'bundler'
+Bundler.require(:default, :test)
+
 require 'rspec'
 
 require File.expand_path('../lib/has_enumeration', File.dirname(__FILE__))
@@ -13,7 +13,7 @@ ActiveRecord::Base.establish_connection(
 )
 
 if ActiveRecord::VERSION::MAJOR >= 3
-  require 'meta_where'
+  Bundler.require(:meta_where)
 end
 
 class CreateTables < ActiveRecord::Migration

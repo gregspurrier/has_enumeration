@@ -1,19 +1,19 @@
 $LOAD_PATH << File.expand_path('../../../lib', __FILE__)
 
-ENV['AR_VERSION'] ||= '3.0'
-
 require 'rubygems'
-require 'bundler/setup'
-require 'has_enumeration'
+require 'bundler'
+Bundler.require(:default, :test)
 
-if ENV['AR_VERSION'] == '3.0'
-  require 'meta_where'
-end
+require 'has_enumeration'
 
 ActiveRecord::Base.establish_connection(
   :adapter => defined?(JRUBY_VERSION) ? 'jdbcsqlite3': 'sqlite3',
   :database => File.expand_path('../database', __FILE__)
 )
+
+if ActiveRecord::VERSION::MAJOR >= 3
+  Bundler.require(:meta_where)
+end
 
 class CreateTables < ActiveRecord::Migration
   create_table :explicitly_mapped_models, :force => true do |t|
