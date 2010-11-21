@@ -45,7 +45,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (>= 2.3.8)
+  activerecord (= 3.0.3)
   activerecord-jdbcsqlite3-adapter (~> 0.9.7)
   cucumber (~> 0.9.3)
   jdbc-sqlite3

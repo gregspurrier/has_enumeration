@@ -1,9 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'activerecord', '>= 2.3.8', :require => 'active_record'
+ENV['AR_VERSION'] ||= '3.0.3'
 
-group :meta_where do
-  gem 'meta_where'
+gem 'activerecord', ENV['AR_VERSION'], :require => 'active_record'
+
+if ENV['AR_VERSION'] >= '3.0.0'
+  group :meta_where do
+    gem 'meta_where'
+  end
 end
 
 group :test do
