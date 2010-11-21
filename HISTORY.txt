@@ -1,3 +1,7 @@
+Version 1.0.2:
+- No code changes
+- Fixed problem with gem dependencies
+
 Version 1.0.1:
 - Added support for Arel 2, which is required by ActiveRecord >= 3.0.3
 
