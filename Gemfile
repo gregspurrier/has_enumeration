@@ -11,8 +11,8 @@ if ENV['AR_VERSION'] >= '3.0.0'
 end
 
 group :test do
-  gem 'rspec', '~> 2.1.0'
-  gem 'cucumber', '~> 0.9.3'
+  gem 'rspec', '~> 2.3.0'
+  gem 'cucumber', '~> 0.10.0'
 
   platforms :ruby do
     gem 'sqlite3-ruby', :require => 'sqlite3'
