@@ -87,6 +87,10 @@ module HasEnumeration
           to_sym
         end
 
+        define_method :to_s do
+          @value.to_s
+        end
+
         mapping.keys.each do |sym|
           predicate = "#{sym}?".to_sym
           value = mapping[sym]

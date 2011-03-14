@@ -65,3 +65,10 @@ describe HasEnumeration, 'assignment of nil' do
     ExplicitlyMappedModel.find(object.id).color.should be_nil
   end
 end
+
+describe HasEnumeration, 'string formatting' do
+  it 'returns the value as a string if to_s is called on it'  do
+    object = ExplicitlyMappedModel.new(:color => :red)
+    object.color.to_s.should eql('red')
+  end
+end
