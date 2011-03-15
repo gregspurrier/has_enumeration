@@ -69,6 +69,6 @@ end
 describe HasEnumeration, 'string formatting' do
   it 'returns the value as a string if to_s is called on it'  do
     object = ExplicitlyMappedModel.new(:color => :red)
-    object.color.to_s.should eql('red')
+    object.color.to_s.should == 'red'
   end
 end
