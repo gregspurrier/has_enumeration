@@ -1,1 +1,4 @@
+features/support/database
 spec/database
+log/
+.rbx/
