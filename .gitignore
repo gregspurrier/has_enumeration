@@ -2,3 +2,4 @@ features/support/database
 spec/database
 log/
 .rbx/
+Gemfile.lock
