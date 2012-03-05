@@ -42,9 +42,13 @@ namespace :features do
   end
 
   Cucumber::Rake::Task.new(:rails3) do |t|
-    features = %w(arel_attributes meta_where_queries)
+    # the ../ hack is because of a gherkin bug encountered when the file paths
+    # have exactly two / characters in some interpreters (coughjrubycough)
+    features = %w(../features/arel_attributes meta_where_queries)
     feature_files = features.map {|f| "features/#{f}.feature"}.join(' ')
-    t.cucumber_opts = feature_files
+
+    # With the ../ hack we have to specify the features directory via -r
+    t.cucumber_opts = '-r features ' +feature_files
   end
 end
 
