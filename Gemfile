@@ -1,6 +1,6 @@
 source :rubygems
 
-version = ENV['AR_VERSION'] || '3.0.x'
+version = ENV['AR_VERSION'] || '3.2.x'
 
 if version.end_with? 'x'
   # fuzzy version support
@@ -10,7 +10,7 @@ else
   gem 'activerecord', version, :require => 'active_record'
 end
 
-gem 'builder', '~> 2.1.2'
+gem 'builder', '~> 3.0.0'
 
 if version >= '3.0.0' && version < '3.1'
   group :meta_where do
