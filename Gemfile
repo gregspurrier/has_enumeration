@@ -1,6 +1,6 @@
 source :rubygems
 
-version = ENV['AR_VERSION'] || '3'
+version = ENV['AR_VERSION'] || '3.2.x'
 
 if version.end_with? 'x'
   # fuzzy version support
@@ -15,11 +15,11 @@ end
 
 gem 'builder'
 
-if version >= '3.0.0'
-  group :meta_where do
-    gem 'squeel'
-  end
-end
+#if version >= '3.0.0'
+#  group :meta_where do
+#    gem 'squeel'
+#  end
+#end
 
 group :development do
   gem 'jeweler'
@@ -29,6 +29,7 @@ group :test do
   gem 'rspec', '~> 2.3.0'
   gem 'cucumber'
 
+  gem 'ruby-debug19'
   platforms :ruby do
     gem 'sqlite3-ruby', :require => 'sqlite3'
   end
