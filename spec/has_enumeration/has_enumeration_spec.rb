@@ -19,11 +19,12 @@ describe HasEnumeration, 'with invalid values' do
         end.should raise_error(ArgumentError, ':beige is not one of {:blue, :green, :red}')
       end
 
-      it 'raises an exception when finding with an invalid value via meta_where' do
-        lambda do
-          ExplicitlyMappedModel.where(:color.not_eq => :beige).all
-        end.should raise_error(ArgumentError, ':beige is not one of {:blue, :green, :red}')
-      end
+      #TODO: handle porting to some other meta_where equivalent that is forward compatible with ActiveRecord 3.1.x+
+      #it 'raises an exception when finding with an invalid value via meta_where' do
+      #  lambda do
+      #    ExplicitlyMappedModel.where(:color.not_eq => :beige).all
+      #  end.should raise_error(ArgumentError, ':beige is not one of {:blue, :green, :red}')
+      #end
     end
   else
     context 'With ActiveRecord 2.x' do

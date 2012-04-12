@@ -50,7 +50,7 @@ module HasEnumeration
         :allow_nil => true
       )
 
-      if ActiveRecord::VERSION::MAJOR >= 3
+      if ActiveRecord::VERSION::MAJOR >= 3 && ActiveRecord::VERSION::MINOR == 0
         # Install this attributes mapping for use later when extending
         # Arel attributes on the fly.
         ::Arel::Table.has_enumeration_mappings[table_name][attribute] = mapping
